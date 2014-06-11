@@ -4,11 +4,12 @@
 			Stop Watch
 		</title>
 	</head>
-	<body onload="ui.showTime()";>
+	<body>
 		<div id="time">TIME</div>
-		<button id="start" onclick="ui.onStart()">Start</button>
-		<button id="stop" onclick="ui.onStop()" disabled>Stop</button>
-		<button id="reset" onclick="ui.onReset()" disabled>Reset</button>
+		<button id="start">Start</button>
+		<button id="stop" disabled>Stop</button>
+		<button id="reset" disabled>Reset</button>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		<script src="stop_watch.js"></script>
 		<script>
 			function StopWatchUi()
@@ -67,7 +68,14 @@
 					return time + ":" + zeroPad(minutes, 2) + ":" + zeroPad(seconds, 2) + "." + miliseconds;
 				};
 			}
-			var ui = new StopWatchUi();
+			$(document).ready(function()
+								{
+									var ui = new StopWatchUi();
+									ui.showTime();
+									$("#start").click(function(){ui.onStart();});
+									$("#stop").click(function(){ui.onStop();});
+									$("#reset").click(function(){ui.onReset();});
+								});
 		</script>
 	</body>
 </html>
